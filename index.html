@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REANIMAL Trainer — God Mode, Infinite Ammo & More | Windows Cheat Loader</title>
+<meta name="description" content="REANIMAL Trainer: external cheat loader for REANIMAL with god mode, infinite ammo, one-hit kill, no reload, speed hack and teleport. Free download for Windows 10 / 11.">
+<style>
+  :root{
+    --bg-0:#070a18;
+    --bg-1:#0d1230;
+    --bg-2:#141a3d;
+    --ink:#eef1ff;
+    --muted:#a3abd0;
+    --line:rgba(140,155,255,.16);
+    --accent:#6d7cff;
+    --accent-2:#39e0c8;
+    --accent-3:#b06bff;
+    --glass:rgba(18,24,56,.55);
+    --radius:18px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 620px at 12% -8%, rgba(109,124,255,.28), transparent 60%),
+      radial-gradient(900px 560px at 92% 4%, rgba(176,107,255,.20), transparent 62%),
+      radial-gradient(1000px 700px at 50% 108%, rgba(57,224,200,.13), transparent 64%),
+      linear-gradient(165deg, var(--bg-0) 0%, var(--bg-1) 46%, var(--bg-2) 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:60;
+    backdrop-filter:blur(16px) saturate(150%);
+    -webkit-backdrop-filter:blur(16px) saturate(150%);
+    background:linear-gradient(180deg, rgba(13,18,48,.82), rgba(13,18,48,.55));
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;gap:20px;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.3px;font-size:1.06rem}
+  .brand-dot{
+    width:30px;height:30px;border-radius:9px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--accent),var(--accent-3) 55%,var(--accent-2));
+    box-shadow:0 0 18px rgba(109,124,255,.65);
+    display:grid;place-items:center;font-size:.85rem;
+  }
+  .brand span small{display:block;font-size:.66rem;font-weight:600;color:var(--muted);letter-spacing:1.6px;text-transform:uppercase}
+  .nav-links{display:flex;gap:6px;margin:0 auto}
+  .nav-links a{
+    padding:9px 15px;border-radius:10px;font-size:.92rem;font-weight:600;color:var(--muted);
+    transition:color .2s,background .2s;
+  }
+  .nav-links a:hover{color:#fff;background:rgba(109,124,255,.14)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-weight:700;font-size:.94rem;border-radius:12px;padding:11px 20px;
+    border:1px solid transparent;cursor:pointer;white-space:nowrap;
+    transition:transform .18s ease, box-shadow .22s ease, background .22s, border-color .22s;
+  }
+  .btn-primary{
+    color:#0a0e22;
+    background:linear-gradient(135deg,#8b95ff,#5f6dff 45%,#3fd9c2);
+    box-shadow:0 8px 26px rgba(95,109,255,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(95,109,255,.58)}
+  .btn-ghost{
+    color:var(--ink);background:rgba(255,255,255,.045);
+    border-color:rgba(160,175,255,.28);
+  }
+  .btn-ghost:hover{background:rgba(160,175,255,.14);transform:translateY(-2px)}
+  .nav .btn{padding:10px 18px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:86px 0 74px;text-align:center}
+  .hero::before{
+    content:"";position:absolute;inset:auto 0 -40% 0;height:420px;pointer-events:none;
+    background:radial-gradient(closest-side, rgba(109,124,255,.18), transparent 72%);
+    filter:blur(8px);
+  }
+  .pill{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:7px 16px 7px 11px;border-radius:100px;font-size:.8rem;font-weight:700;
+    letter-spacing:.9px;text-transform:uppercase;color:#cfd6ff;
+    background:rgba(109,124,255,.12);border:1px solid rgba(140,155,255,.32);
+    box-shadow:0 0 26px rgba(109,124,255,.18) inset;
+  }
+  .pill i{width:8px;height:8px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2);animation:pulse 2.1s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
+  h1{
+    margin:26px auto 0;max-width:900px;
+    font-size:clamp(2.15rem,6.2vw,4.15rem);line-height:1.08;font-weight:900;letter-spacing:-1.4px;
+  }
+  .grad{
+    background:linear-gradient(100deg,#9aa4ff 0%,#6d7cff 32%,#b06bff 62%,#39e0c8 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{
+    margin:22px auto 0;max-width:640px;color:var(--muted);font-size:clamp(1rem,2.1vw,1.13rem);
+  }
+  .hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .hero-actions .btn{padding:15px 28px;font-size:1rem;border-radius:14px}
+  .stats{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:46px;
+  }
+  .chip{
+    display:flex;align-items:center;gap:9px;
+    padding:10px 17px;border-radius:100px;font-size:.87rem;font-weight:600;color:#cfd6f5;
+    background:var(--glass);border:1px solid var(--line);
+    backdrop-filter:blur(10px);
+  }
+  .chip b{color:#fff;font-weight:800}
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 9px var(--accent-2)}
+
+  /* ---------- SECTION HEADINGS ---------- */
+  section{padding:74px 0}
+  .kicker{
+    display:block;text-align:center;font-size:.78rem;font-weight:800;letter-spacing:2.6px;
+    text-transform:uppercase;color:var(--accent-2);margin-bottom:12px;
+  }
+  h2{
+    text-align:center;font-size:clamp(1.65rem,4vw,2.5rem);font-weight:850;letter-spacing:-.8px;line-height:1.16;
+  }
+  .sub{text-align:center;color:var(--muted);max-width:600px;margin:14px auto 0;font-size:1rem}
+
+  /* ---------- FEATURES ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .card{
+    position:relative;overflow:hidden;
+    padding:26px 24px 28px;border-radius:var(--radius);
+    background:linear-gradient(170deg, rgba(30,38,84,.72), rgba(15,20,46,.62));
+    border:1px solid var(--line);
+    box-shadow:0 16px 40px -22px rgba(0,0,0,.85);
+    transition:transform .24s ease, box-shadow .24s ease, border-color .24s;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-3),var(--accent-2));
+    opacity:.85;
+  }
+  .card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(140,155,255,.42);
+    box-shadow:0 26px 54px -22px rgba(80,100,255,.55);
+  }
+  .card .ico{
+    width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:1.45rem;
+    background:rgba(109,124,255,.14);border:1px solid rgba(140,155,255,.26);margin-bottom:16px;
+  }
+  .card h3{font-size:1.08rem;font-weight:800;margin-bottom:8px;letter-spacing:-.2px}
+  .card p{color:var(--muted);font-size:.92rem}
+  .card .tag{
+    display:inline-block;margin-top:16px;font-family:ui-monospace,Consolas,monospace;
+    font-size:.72rem;letter-spacing:.6px;color:#a9b3ff;
+    background:rgba(109,124,255,.1);border:1px solid rgba(140,155,255,.2);
+    padding:3px 9px;border-radius:6px;
+  }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{position:relative;max-width:760px;margin:52px auto 0;padding-left:64px}
+  .steps::before{
+    content:"";position:absolute;left:23px;top:14px;bottom:14px;width:2px;
+    background:linear-gradient(180deg,var(--accent),var(--accent-3) 50%,var(--accent-2));
+    box-shadow:0 0 16px rgba(109,124,255,.55);
+  }
+  .step{position:relative;padding:0 0 34px 0}
+  .step:last-child{padding-bottom:0}
+  .step .num{
+    position:absolute;left:-64px;top:-2px;width:48px;height:48px;border-radius:50%;
+    display:grid;place-items:center;font-weight:900;font-size:1.05rem;color:#0a0e22;
+    background:linear-gradient(135deg,#9aa4ff,#5f6dff 55%,#3fd9c2);
+    box-shadow:0 0 0 5px rgba(7,10,24,.9),0 0 24px rgba(109,124,255,.55);
+  }
+  .step h3{font-size:1.1rem;font-weight:800;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:.94rem;max-width:560px}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:800px;margin:48px auto 0;display:grid;gap:13px}
+  details{
+    border-radius:14px;border:1px solid var(--line);
+    background:linear-gradient(170deg, rgba(28,35,79,.62), rgba(14,19,44,.58));
+    padding:0 20px;overflow:hidden;
+    transition:border-color .22s, background .22s;
+  }
+  details[open]{border-color:rgba(140,155,255,.42);background:linear-gradient(170deg, rgba(33,42,96,.75), rgba(16,22,50,.65))}
+  summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px 0;font-weight:700;font-size:1rem;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .plus{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;position:relative;
+    background:rgba(109,124,255,.16);border:1px solid rgba(140,155,255,.28);
+    transition:transform .26s ease, background .26s;
+  }
+  summary .plus::before,summary .plus::after{
+    content:"";position:absolute;left:50%;top:50%;background:#b9c1ff;border-radius:2px;
+    transform:translate(-50%,-50%);
+  }
+  summary .plus::before{width:11px;height:2px}
+  summary .plus::after{width:2px;height:11px;transition:opacity .22s, transform .26s}
+  details[open] summary .plus{transform:rotate(45deg);background:rgba(57,224,200,.18);border-color:rgba(57,224,200,.4)}
+  details[open] summary .plus::after{opacity:0}
+  details p{padding:0 0 20px;color:var(--muted);font-size:.94rem;max-width:660px}
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-band{padding:34px 0 78px}
+  .cta-card{
+    position:relative;overflow:hidden;text-align:center;
+    border-radius:26px;padding:62px 28px;
+    border:1px solid rgba(140,155,255,.28);
+    background:linear-gradient(150deg, rgba(38,47,110,.9), rgba(16,21,52,.92));
+    box-shadow:0 40px 90px -40px rgba(80,100,255,.7);
+  }
+  .cta-card::before{
+    content:"";position:absolute;left:50%;top:-55%;width:760px;height:760px;transform:translateX(-50%);
+    background:radial-gradient(closest-side, rgba(109,124,255,.42), rgba(176,107,255,.16) 55%, transparent 72%);
+    pointer-events:none;
+  }
+  .cta-card > *{position:relative}
+  .cta-card h2{max-width:640px;margin:0 auto}
+  .cta-card p{color:var(--muted);max-width:520px;margin:16px auto 0;font-size:.98rem}
+  .cta-card .btn{margin-top:30px;padding:16px 34px;font-size:1.03rem;border-radius:14px}
+  .cta-note{margin-top:16px;font-size:.8rem;letter-spacing:.6px;color:#8b94c2;text-transform:uppercase;font-weight:700}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    background:rgba(8,11,28,.6);
+    padding:30px 0;
+  }
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .foot p{color:#8b94c2;font-size:.86rem}
+  .foot a.gh{color:#cfd6ff;font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);
+    transition:background .2s,border-color .2s,transform .2s}
+  .foot a.gh:hover{background:rgba(109,124,255,.16);border-color:rgba(140,155,255,.42);transform:translateY(-2px)}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:640px){
+    .nav-links{display:none}
+    .nav-inner{height:64px;gap:12px}
+    .nav .btn{margin-left:auto;padding:9px 14px;font-size:.85rem}
+    .hero{padding:56px 0 48px}
+    .hero-actions .btn{width:100%}
+    .grid{grid-template-columns:1fr;gap:16px;margin-top:34px}
+    section{padding:54px 0}
+    .steps{padding-left:56px;margin-top:34px}
+    .steps::before{left:19px}
+    .step .num{left:-56px;width:40px;height:40px;font-size:.95rem}
+    .cta-card{padding:44px 20px;border-radius:20px}
+    .cta-card .btn{width:100%}
+    .foot{flex-direction:column;text-align:center}
+    h1{letter-spacing:-.8px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-dot">🐾</span>
+      <span>REANIMAL Trainer<small>Cheat Loader</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="https://gitscore.cc" target="_blank" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="pill"><i></i> REANIMAL Trainer · External Loader</span>
+      <h1>Survive the outbreak with the <span class="grad">REANIMAL Trainer</span></h1>
+      <p class="lead">
+        An external cheat loader for REANIMAL that unlocks god mode, infinite ammo, one-hit kill,
+        no reload, speed hack and instant teleport. Toggle every option from a single overlay — no
+        game file edits, no mods to install.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://gitscore.cc" target="_blank" rel="noopener">⬇ Download Trainer</a>
+        <a class="btn btn-ghost" href="https://github.com/reanimal-trainer" target="_blank" rel="noopener">★ View on GitHub</a>
+      </div>
+
+      <div class="stats">
+        <span class="chip"><span class="dot"></span><b>128K+</b> downloads</span>
+        <span class="chip">Version <b>v2.4.1</b></span>
+        <span class="chip">🪟 <b>Windows 10 / 11</b></span>
+        <span class="chip">🔓 <b>Free &amp; open source</b></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <span class="kicker">Trainer Options</span>
+      <h2>Six cheats that change the rules</h2>
+      <p class="sub">Every module is hotkey-bound and can be toggled mid-run without restarting REANIMAL.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="ico">🛡️</div>
+          <h3>God Mode</h3>
+          <p>Ignore bites, falls and environmental damage entirely. Your health bar stays pinned while you scout the map freely.</p>
+          <span class="tag">F1 · toggle</span>
+        </article>
+
+        <article class="card">
+          <div class="ico">🔫</div>
+          <h3>Infinite Ammo</h3>
+          <p>Magazines and reserves never drain. Keep firing through hordes without ever stopping to scavenge crates.</p>
+          <span class="tag">F2 · toggle</span>
+        </article>
+
+        <article class="card">
+          <div class="ico">💀</div>
+          <h3>One-Hit Kill</h3>
+          <p>Every shot, melee swing and thrown object lands lethal damage. Clear infected encounters in a single hit.</p>
+          <span class="tag">F3 · toggle</span>
+        </article>
+
+        <article class="card">
+          <div class="ico">♻️</div>
+          <h3>No Reload</h3>
+          <p>Skip the reload animation entirely. Firing stays continuous so your DPS never drops during a chase.</p>
+          <span class="tag">F4 · toggle</span>
+        </article>
+
+        <article class="card">
+          <div class="ico">⚡</div>
+          <h3>Speed Hack</h3>
+          <p>Adjustable movement multiplier from 1.2× to 5×. Cross long corridors fast or escape a swarm in seconds.</p>
+          <span class="tag">F5 · slider</span>
+        </article>
+
+        <article class="card">
+          <div class="ico">🧭</div>
+          <h3>Teleport</h3>
+          <p>Save a position, then jump back to it instantly. Skip backtracking and reach locked areas for testing routes.</p>
+          <span class="tag">F6 · save / warp</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <span class="kicker">Setup Guide</span>
+      <h2>How it works</h2>
+      <p class="sub">Three steps from download to full trainer control — usually under two minutes.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Download the loader</h3>
+          <p>Grab the latest REANIMAL Trainer build from gitscore.cc, then extract the archive to any folder outside your game directory.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Launch REANIMAL first</h3>
+          <p>Start the game and load into a save. Once you are in-game, run the trainer as administrator so it can attach to the process.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Toggle your cheats</h3>
+          <p>Use the overlay or the F1–F6 hotkeys to enable god mode, infinite ammo and the rest. Changes apply live — no restart needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <span class="kicker">Questions</span>
+      <h2>Frequently asked</h2>
+      <p class="sub">Everything you need to know before running the REANIMAL Trainer.</p>
+
+      <div class="faq">
+        <details open>
+          <summary>Is the REANIMAL Trainer safe to run? <span class="plus"></span></summary>
+          <p>The trainer is fully open source — every build is compiled from the public repository, so you can audit the code yourself. It works as an external loader and does not modify or patch REANIMAL game files on disk.</p>
+        </details>
+
+        <details>
+          <summary>Does it work with the Steam and Epic versions? <span class="plus"></span></summary>
+          <p>Yes. The loader attaches by process name, so it supports both the Steam and Epic Games builds of REANIMAL on Windows 10 and 11. Make sure the game is already running before you launch the trainer.</p>
+        </details>
+
+        <details>
+          <summary>Which hotkeys control the cheats? <
