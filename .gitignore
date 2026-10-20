@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build artifacts for the injector
+build/
+dist/
+*.spec
+*.log
+
+# Local trainer configs (contain per-user offsets)
+config/local.toml
+profiles/
+*.reanimal_profile
+
+# IDE
+.vscode/
+.idea/
